@@ -26,7 +26,7 @@
 
 /* USER CODE BEGIN 0 */
 
-static uint8_t cmd;    // 用于接受云端下发的控制命�?
+static uint8_t cmd;    // 用于接受云端下发的控制命�?
 
 
 /* USER CODE END 0 */
@@ -59,7 +59,7 @@ void MX_USART2_UART_Init(void)
   }
   /* USER CODE BEGIN USART2_Init 2 */
 	
-	// 通过中断的方式接收控制命�?
+	// 通过中断的方式接收控制命�?
 	HAL_UART_Receive_IT(&huart2, &cmd, sizeof(cmd));
 	
 	
@@ -133,7 +133,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	
-	// 如果是串�?2
+	// 如果是串�?2
 	if(huart == &huart2)
 	{
 		if('a' == cmd)
@@ -166,13 +166,16 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		}
 		
 		
-		// 在这里扩展远程硬件控制功�?
+		// 在这里扩展远程硬件控制功能
 		// ......
 		
+
 		
-		// 继续接收下一个字节数�?
-		HAL_UART_Receive_IT(&huart2, &cmd, sizeof(cmd)); // 通过中断的方式接收控制命�?
+		
+		// 继续接收下一个字节数据
+		HAL_UART_Receive_IT(&huart2, &cmd, sizeof(cmd)); // 通过中断的方式接收控制命令
 	}
 }
 
 /* USER CODE END 1 */
+
